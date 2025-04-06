@@ -1,0 +1,39 @@
+[project]
+name = "opera-comique-api"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Kelly Christensen"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "kuzu (>=0.9.0)",
+    "fastapi (>=0.115.12,<0.116.0)",
+    "pydantic (>=2.11.2,<3.0.0)",
+    "uvicorn (>=0.34.0,<0.35.0)",
+    "polars (>=1.26.0,<2.0.0)",
+    "pyarrow (>=19.0.1,<20.0.0)"
+]
+
+[project.scripts]
+run-dev = "src.__main__:dev"
+run-prod = "src.__main__:prod"
+
+[tool.poetry]
+packages = [
+    {include = "opera_comique_api", from = "src"},
+    {include = "src"},
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
